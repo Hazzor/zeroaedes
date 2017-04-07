@@ -1,0 +1,61 @@
+<!--
+  Generated template for the StaffSemuaKes page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Semua Kes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+<ion-list>
+  <ion-item-sliding>
+    
+    <ion-item (click)="itemClicked()">
+
+    <h2 text-wrap>KK3</h2>
+    <h3 >27 August 2017</h3>
+   
+    <p >Belum ambil tindakan</p>
+    
+    </ion-item>
+
+    <ion-item-options side="right">
+      <button ion-button color="danger">
+        <ion-icon name="trash"></ion-icon>
+        Delete
+      </button>
+
+    </ion-item-options>
+  </ion-item-sliding>
+
+    <ion-item-sliding>
+    
+    <ion-item>
+    
+    <h2 text-wrap>KK2</h2>
+    <h3 >27 September 2017</h3>
+   
+    <p >Sudah ambil tindakan</p>
+    
+    
+    </ion-item>
+
+    <ion-item-options side="left">
+      <button ion-button color="danger">
+        <ion-icon name="trash"></ion-icon>
+        Delete
+      </button>
+
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+</ion-content>

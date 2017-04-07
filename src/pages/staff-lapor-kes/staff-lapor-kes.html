@@ -1,0 +1,70 @@
+<!--
+  Generated template for the StaffLaporKes page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Lapor Kes Aedes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+  <ion-list mode="wp">
+
+  <ion-item mode="wp">
+    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi"></ion-input>
+  </ion-item>
+
+  <ion-item mode="wp">
+    <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi"></ion-textarea>
+  </ion-item>
+
+  <ion-item mode="wp">
+    <ion-input mode="wp" type="number" clearInput placeholder="No. Telefon Staf "></ion-input>
+  </ion-item>
+
+  <div class="buttonContainer">
+      <button ion-button class="button" small color="primary" round mode="ios" (click)="muatnaikGambar()">Muat Naik Gambar</button>
+  </div>
+
+ 
+
+</ion-list>
+ <ion-list radio-group mode="wp">
+  <ion-list-header mode="wp" color="light">
+    <h2 color="">Tindakan Sudah Diambil?</h2>
+  </ion-list-header>
+
+  <ion-item mode="wp">
+    <ion-label>Ya</ion-label>
+    <ion-radio  value="Ya"></ion-radio>
+  </ion-item>
+
+  <ion-item mode="wp">
+    <ion-label>Tidak</ion-label>
+    <ion-radio checked="true" value="Tidak"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+
+    <h6 text-wrap style="font-weight:100">Semua staf mempunyai autoriti untuk tick 'Sudah' selepas tindakan untuk menyelesaikan kes diambil</h6>
+  </ion-item>
+</ion-list>
+
+</ion-content>
+
+<ion-footer  [ngSwitch]="status" >
+
+
+  <div class="buttonContainer"  >
+      <button ion-button class="button" color="secondary" round mode="ios" (click)="hantarAplikasi()">Hantar Aplikasi</button>
+  </div>
+
+
+</ion-footer>
