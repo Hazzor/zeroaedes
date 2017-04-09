@@ -4,8 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
+import { StaffMenuPage } from '../pages/staff-menu/staff-menu';
 
-
+import { AuthProvider } from '../providers/auth';
 
 
 @Component({
@@ -14,11 +15,12 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  // rootPage: any = LoginPage;
+  rootPage: any = StaffMenuPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -34,7 +36,8 @@ export class MyApp {
     });
   }
 
-  logout(){
+  logkeluar(){
+    this.auth.logout();
     this.nav.setRoot(LoginPage);
   }
 

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
+
+import { AuthProvider } from '../../providers/auth';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the StaffSignUp page.
@@ -13,10 +16,51 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class StaffSignUpPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  error: any;
+  form: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthProvider, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    this.form = {
+      email: '',
+      password: ''
+    }
+ }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffSignUpPage');
   }
+
+  register() {
+    let loading = this.loadingCtrl.create({
+      content: 'Sila tunggu sebentar...'
+    });
+    loading.present();
+
+    this.auth.registerUser(this.form).subscribe(registerData => {
+      this.auth.loginWithEmail(registerData).subscribe(loginData => {
+        setTimeout(() => {
+          loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Berjaya!',
+            subTitle: 'Akaun anda telah berjaya didaftarkan!',
+            buttons: ['OK']
+          });
+          alert.present();
+          this.navCtrl.setRoot(LoginPage);
+        }, 1000);
+      }, loginError => {
+        setTimeout(() => {
+          loading.dismiss();
+          this.error = loginError;
+        }, 1000);
+      });
+    }, registerError => {
+      setTimeout(() => {
+        loading.dismiss();
+        this.error = registerError;
+      }, 1000);
+    });
+  }
+
 
 }

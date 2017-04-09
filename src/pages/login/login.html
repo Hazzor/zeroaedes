@@ -57,11 +57,11 @@
   <ion-list mode="wp">
 
   <ion-item mode="wp">
-    <ion-input mode="wp" type="text" placeholder="Emel"></ion-input>
+    <ion-input type="email" mode="wp" type="text" placeholder="Emel" [(ngModel)]="form.email"></ion-input>
   </ion-item>
 
   <ion-item mode="wp">
-    <ion-input mode="wp" type="password" placeholder="Kata Laluan"></ion-input>
+    <ion-input type="password" mode="wp" type="password" placeholder="Kata Laluan" [(ngModel)]="form.password"></ion-input>
   </ion-item>
 
   <div class="buttonContainer">
@@ -82,13 +82,13 @@
 <ion-footer  [ngSwitch]="status" >
 
   <div *ngSwitchCase="'Staf'">
-  
+
     <ion-item style="text-align:center;border-top: 1px solid lightgrey; " no-lines>
     <h4 color="gray">Belum ada akaun?</h4>
 
     <button ion-button clear color="primary" (click)="openSignUpPage()">
-      
-      <b>Daftar</b> 
+
+      <b>Daftar</b>
     </button>
   </ion-item>
   </div>

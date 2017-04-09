@@ -18,35 +18,42 @@
   <ion-list mode="wp">
 
   <ion-item mode="wp">
-    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi"></ion-input>
+    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
+  </ion-item>
+
+  <!-- <div class="buttonContainer">
+      <button ion-button class="button" small color="primary" round mode="ios" (click)="getCoord()">Guna GPS</button>
+  </div> -->
+
+  <ion-item mode="wp">
+    <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi" [(ngModel)]="form.deskripsi"></ion-textarea>
   </ion-item>
 
   <ion-item mode="wp">
-    <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi"></ion-textarea>
+    <ion-input mode="wp" type="text" clearInput placeholder="Nama Staf" [(ngModel)]="form.nama"></ion-input>
   </ion-item>
 
   <ion-item mode="wp">
-    <ion-input mode="wp" type="number" clearInput placeholder="No. Telefon Staf "></ion-input>
+    <ion-input mode="wp" type="number" clearInput placeholder="No. Telefon Staf " [(ngModel)]="form.telefon"></ion-input>
   </ion-item>
 
   <div class="buttonContainer">
-      <button ion-button class="button" small color="primary" round mode="ios" (click)="muatnaikGambar()">Muat Naik Gambar</button>
+      <button ion-button class="button" small color="primary" round mode="ios" (click)="uploadGambar()">Muat Naik Gambar</button>
   </div>
-
- 
-
 </ion-list>
- <ion-list radio-group mode="wp">
+
+
+ <ion-list radio-group mode="wp" [(ngModel)]="form.tindakan">
   <ion-list-header mode="wp" color="light">
     <h2 color="">Tindakan Sudah Diambil?</h2>
   </ion-list-header>
 
-  <ion-item mode="wp">
+  <ion-item >
     <ion-label>Ya</ion-label>
     <ion-radio  value="Ya"></ion-radio>
   </ion-item>
 
-  <ion-item mode="wp">
+  <ion-item >
     <ion-label>Tidak</ion-label>
     <ion-radio checked="true" value="Tidak"></ion-radio>
   </ion-item>

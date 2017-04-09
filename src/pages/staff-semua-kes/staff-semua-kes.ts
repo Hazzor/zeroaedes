@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { StaffButiranKesPage } from '../staff-butiran-kes/staff-butiran-kes';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 /*
   Generated class for the StaffSemuaKes page.
@@ -14,7 +15,11 @@ import { StaffButiranKesPage } from '../staff-butiran-kes/staff-butiran-kes';
 })
 export class StaffSemuaKesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  aduans: FirebaseListObservable<any>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+    this.aduans = af.database.list('/aduanList')
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffSemuaKesPage');

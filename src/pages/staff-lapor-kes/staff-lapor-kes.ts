@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { DataProvider } from '../../providers/data';
+import { AngularFire , FirebaseListObservable , FirebaseObjectObservable } from 'angularfire2';
+import firebase from 'firebase';
+
+import { Subscription } from 'rxjs/Subscription';
 
 /*
   Generated class for the StaffLaporKes page.
@@ -13,10 +20,116 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class StaffLaporKesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  coord: any;
+  form: any;
+  aduanList: any;
+  gambaraduanURL: any;
+  gambaraduanList: firebase.storage.Reference;
+
+  authUserSub : Subscription;
+  authUser : FirebaseObjectObservable<any>;
+  authUserIdSub : Subscription;
+  authUserId : string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire) {
+    this.form = {
+      lokasi: '',
+      deskripsi: '',
+      telefon: '',
+      tindakan: ''
+    }
+    this.aduanList = af.database.list('/aduanList');
+    this.gambaraduanList = firebase.storage().ref('/gambarAduan/');
+
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffLaporKesPage');
+
+    this.authUserIdSub = this.af.auth.subscribe((currentUser) => {
+      this.authUserId = currentUser.uid;
+    });
+    this.authUser = this.af.database.object('/authUsers/'+ this.authUserId);
+    this.authUserSub = this.authUser.subscribe((userData) => {
+        this.form.nama = userData.name,
+        this.form.telefon = userData.number
+    });
+
+    this.getCoord();
+  }
+
+  getCoord()
+  {
+    this.geolocation.getCurrentPosition().then((position) => {
+
+          this.coord = position.coords.latitude + ", " + position.coords.longitude;
+          // console.log(this.coord);
+
+        }, (err) => {
+          console.log(err);
+        });
+  }
+
+  uploadGambar()
+  {
+    this.cameraPlugin.getPicture({
+      quality : 95,
+      destinationType : this.cameraPlugin.DestinationType.DATA_URL,
+      sourceType : this.cameraPlugin.PictureSourceType.CAMERA,
+      // sourceType : this.cameraPlugin.PictureSourceType.PHOTOLIBRARY,
+      allowEdit : true,
+      encodingType: this.cameraPlugin.EncodingType.PNG,
+      targetWidth: 500,
+      targetHeight: 500,
+      saveToPhotoAlbum: true
+    }).then(imageData => {
+      // this.form.picture = imageData;
+
+
+      this.gambaraduanList.child(Math.random() + '.png')
+      .putString(imageData, 'base64', {contentType: 'image/png'}).then((savedPicture) => {
+          this.gambaraduanURL = savedPicture.downloadURL;
+        });
+
+      let alert = this.alertCtrl.create({
+            title: 'Berjaya!',
+            subTitle: 'Gambar anda telah dimuat naik',
+            buttons: ['OK']
+          });
+          alert.present();
+    }, error => {
+      let alert = this.alertCtrl.create({
+            title: 'Gagal!',
+            subTitle: 'Gambar anda tidak dimuat naik',
+            buttons: ['OK']
+          });
+          alert.present();
+    });
+  }
+
+
+  hantarAplikasi()
+  {
+    this.aduanList.push({
+      coord: this.coord,
+      deskripsi: this.form.deskripsi,
+      telefon: this.form.telefon,
+      tindakan: this.form.tindakan,
+      // gambar: this.gambaraduanURL
+    })
+
+    this.authUser.update({
+      name: this.form.nama,
+      number: this.form.telefon
+    })
+
+    // console.log(this.coord);
+    // console.log(this.form.deskripsi);
+    // console.log(this.form.telefon);
+    // console.log(this.form.tindakan);
+    this.navCtrl.pop();
   }
 
 }

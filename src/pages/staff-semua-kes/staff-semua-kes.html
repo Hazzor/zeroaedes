@@ -17,14 +17,16 @@
 
 <ion-list>
   <ion-item-sliding>
-    
-    <ion-item (click)="itemClicked()">
 
-    <h2 text-wrap>KK3</h2>
-    <h3 >27 August 2017</h3>
-   
-    <p >Belum ambil tindakan</p>
-    
+    <ion-item *ngFor="let aduan of aduans | async"(click)="itemClicked()">
+
+    <h2 text-wrap>{{aduan.lokasi}}</h2>
+    <h3 >{{aduan.deskripsi}}</h3>
+
+    <p >{{aduan.telefon}}</p>
+
+    <img [src]="aduan.gambar">
+
     </ion-item>
 
     <ion-item-options side="right">
@@ -37,15 +39,15 @@
   </ion-item-sliding>
 
     <ion-item-sliding>
-    
+
     <ion-item>
-    
+
     <h2 text-wrap>KK2</h2>
     <h3 >27 September 2017</h3>
-   
+
     <p >Sudah ambil tindakan</p>
-    
-    
+
+
     </ion-item>
 
     <ion-item-options side="left">

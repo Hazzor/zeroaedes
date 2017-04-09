@@ -2,6 +2,14 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Camera } from '@ionic-native/camera';
+
+import { AngularFireModule } from 'angularfire2';
+
+import { AuthProvider } from '../providers/auth';
+import { DataProvider } from '../providers/data';
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -22,8 +30,14 @@ import { StudMenuPage } from '../pages/stud-menu/stud-menu';
 import { StudStatusAduanPage } from '../pages/stud-status-aduan/stud-status-aduan';
 import { StudButiranAduanPage } from '../pages/stud-butiran-aduan/stud-butiran-aduan';
 
-
-
+var config = {
+  apiKey: "AIzaSyBpGFyWITGAFILlFnuW33mZXfFbOPqSdkI",
+  authDomain: "muckeapp-7ada6.firebaseapp.com",
+  databaseURL: "https://muckeapp-7ada6.firebaseio.com",
+  projectId: "muckeapp-7ada6",
+  storageBucket: "muckeapp-7ada6.appspot.com",
+  messagingSenderId: "425189334779"
+  };
 
 @NgModule({
   declarations: [
@@ -45,7 +59,8 @@ import { StudButiranAduanPage } from '../pages/stud-butiran-aduan/stud-butiran-a
 
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,10 +80,6 @@ import { StudButiranAduanPage } from '../pages/stud-butiran-aduan/stud-butiran-a
     StudStatusAduanPage,
     StudButiranAduanPage
   ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  providers: [,DataProvider,AuthProvider,StatusBar,SplashScreen,Geolocation,Camera,{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

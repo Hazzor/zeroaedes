@@ -15,13 +15,14 @@
 
 <ion-content >
 
+
     <ion-list mode="wp">
       <ion-item mode="wp">
-        <ion-input type="email" mode="wp" placeholder="Emel" ></ion-input>
+        <ion-input type="email" mode="wp" placeholder="Emel" [(ngModel)]="form.email"></ion-input>
       </ion-item>
 
       <ion-item mode="wp">
-        <ion-input type="password" mode="wp" placeholder="Kata Laluan" ></ion-input>
+        <ion-input type="password" mode="wp" placeholder="Kata Laluan" [(ngModel)]="form.password"></ion-input>
       </ion-item>
     </ion-list>
 
@@ -38,7 +39,7 @@
 <ion-footer>
 
     <div class="buttonContainer">
-        <button ion-button class="button" color="secondary" round mode="ios" (click)="signUp()">Daftar</button>
+        <button ion-button class="button" color="secondary" round mode="ios" (click)="register()">Daftar</button>
     </div>
 
 </ion-footer>
