@@ -18,13 +18,18 @@
 <ion-list>
   <ion-item-sliding>
 
-    <ion-item *ngFor="let aduan of aduans | async"(click)="itemClicked()">
+    <!-- <ion-item> -->
+  <!-- <ion-label>Date</ion-label> -->
+  <!-- <ion-datetime displayFormat="DD/MMM/YYYY HH mm" pickerFormat="DD MMM YYYY HH mm" [(ngModel)]="myDate"></ion-datetime> -->
+  <!-- <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="myDate"></ion-datetime> -->
+<!-- </ion-item> -->
 
-    <h2 text-wrap>{{aduan.lokasi}}</h2>
-    <h3 >{{aduan.deskripsi}}</h3>
+    <ion-item *ngFor="let aduan of aduans"(click)="itemClicked()">
 
-    <p >{{aduan.telefon}}</p>
+    <h2 text-wrap>{{aduan.timestamp}}</h2>
+    <h3 >Tindakan Diambil: {{aduan.tindakan}}</h3>
 
+    <p >Dilaporkan oleh: {{aduan.nama}}</p>
     <img [src]="aduan.gambar">
 
     </ion-item>
@@ -43,7 +48,7 @@
     <ion-item>
 
     <h2 text-wrap>KK2</h2>
-    <h3 >27 September 2017</h3>
+    <h3 >{{myDate}}</h3>
 
     <p >Sudah ambil tindakan</p>
 
@@ -59,5 +64,11 @@
     </ion-item-options>
   </ion-item-sliding>
 </ion-list>
+
+<ion-item >
+<!-- <button (click)="dateClicked()">Date</button> -->
+
+</ion-item>
+
 
 </ion-content>

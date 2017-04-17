@@ -57,7 +57,7 @@ export class StaffLaporKesPage {
         this.form.telefon = userData.number
     });
 
-    this.getCoord();
+    // this.getCoord();
   }
 
   getCoord()
@@ -113,10 +113,13 @@ export class StaffLaporKesPage {
   hantarAplikasi()
   {
     this.aduanList.push({
+      tsid: Date.now(),
+      timestamp: Date(),
       coord: this.coord,
       deskripsi: this.form.deskripsi,
       telefon: this.form.telefon,
       tindakan: this.form.tindakan,
+      nama: this.form.nama,
       // gambar: this.gambaraduanURL
     })
 

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { StaffButiranKesPage } from '../staff-butiran-kes/staff-butiran-kes';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the StaffSemuaKes page.
@@ -13,12 +14,23 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   selector: 'page-staff-semua-kes',
   templateUrl: 'staff-semua-kes.html'
 })
-export class StaffSemuaKesPage {
+export class StaffSemuaKesPage implements OnInit {
 
-  aduans: FirebaseListObservable<any>;
+  aduans: any;
+  myDate: any;
+  another: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
-    this.aduans = af.database.list('/aduanList')
+
+  }
+
+  ngOnInit(){
+    this.af.database.list('/aduanList', {
+    }).map((aduan) => {
+      return aduan.sort(function(a,b){
+        return b.tsid - a.tsid
+      });
+    }).subscribe((value) => {this.aduans = value});
   }
 
   ionViewDidLoad() {
@@ -27,7 +39,17 @@ export class StaffSemuaKesPage {
 
   itemClicked(){
     this.navCtrl.push(StaffButiranKesPage);
-
   }
+
+  // dateClicked(){
+  //   this.another = this.myDate.split(/-|:|T/);
+  //   console.log(this.another);
+  //   console.log(this.myDate);
+  //   let timestamp = new Date (this.another[0],this.another[1],this.another[2],this.another[3],this.another[4],0,0);
+  //   console.log(timestamp);
+  //   let something = timestamp.getTime();
+  //   console.log(something);
+  //
+  // }
 
 }

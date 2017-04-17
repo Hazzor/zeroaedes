@@ -21,6 +21,8 @@
     <ion-input mode="wp" type="text" clearInput placeholder="Lokasi" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
   </ion-item>
 
+  <button ion-button full color="blue" (click)="getCoord()">Guna GPS</button>
+
   <!-- <div class="buttonContainer">
       <button ion-button class="button" small color="primary" round mode="ios" (click)="getCoord()">Guna GPS</button>
   </div> -->
