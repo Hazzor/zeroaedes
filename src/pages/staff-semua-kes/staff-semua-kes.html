@@ -24,14 +24,12 @@
   <!-- <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="myDate"></ion-datetime> -->
 <!-- </ion-item> -->
 
-    <ion-item *ngFor="let aduan of aduans"(click)="itemClicked()">
+    <ion-item *ngFor="let aduan of aduans"(click)="aduanClicked(aduan)">
 
-    <h2 text-wrap>{{aduan.timestamp}}</h2>
-    <h3 >Tindakan Diambil: {{aduan.tindakan}}</h3>
+    <h2 text-wrap>{{aduan.location}}</h2>
+    <h3 >Dilaporkan Pada: {{aduan.timestamp}}</h3>
 
-    <p >Dilaporkan oleh: {{aduan.nama}}</p>
-    <img [src]="aduan.gambar">
-
+    <p >Tindakan Diambil: {{aduan.tindakan}}</p>
     </ion-item>
 
     <ion-item-options side="right">

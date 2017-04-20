@@ -19,48 +19,48 @@
     <ion-item-divider color="light"><h2 class="itemDivider" >Lokasi</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>KK3</b></h2>
+      <h2  text-wrap item-left ><b>{{aduan.location}}</b></h2>
     </ion-item>
+
+    <!-- <div class="buttonContainer"  > -->
+    <button ion-button class="button" small color="primary" round mode="ios" (click)="openMap()">View On Map</button>
+  <!-- </div> -->
 
 
     <ion-item-divider color="light"><h2 class="itemDivider" >Pemerhatian</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>Dua tayar berisi dengan air bertakung yang mempunyai banyak jejentik</b></h2>
+      <h2  text-wrap item-left ><b>{{aduan.deskripsi}}</b></h2>
     </ion-item>
 
     <ion-item-divider color="light"><h2 class="itemDivider" >Status</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>Belum ambil tindakan</b></h2>
+      <h2  text-wrap item-left ><b>Tindakan Diambil: {{aduan.tindakan}}</b></h2>
     </ion-item>
 
     <ion-item-divider color="light"><h2 class="itemDivider" >Staf yang laporkan</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>Ahmad Faiz</b></h2>
+      <h2  text-wrap item-left ><b>{{aduan.nama}}</b></h2>
     </ion-item>
 
     <ion-item-divider color="light"><h2 class="itemDivider" >No. Telefon Staf</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>0134532347</b></h2>
+      <h2  text-wrap item-left ><b>{{aduan.telefon}}</b></h2>
     </ion-item>
 
     <ion-item-divider color="light"><h2 class="itemDivider" >Gambar</h2></ion-item-divider>
 
     <div style="width:100%;height:100px;">
-      
+      <img [src]="aduan.gambar">
     </div>
 
-    <ion-item-divider color="light"><h2 class="itemDivider" >Catatan kepada pelapor</h2></ion-item-divider>
+    <!-- <ion-item-divider color="light"><h2 class="itemDivider" >Catatan kepada pelapor</h2></ion-item-divider>
     <ion-item mode="wp">
       <ion-textarea mode="wp" type="text" clearInput></ion-textarea>
-    </ion-item>
-
-    <div class="buttonContainer"  >
-    <button ion-button class="button" small color="primary" round mode="ios" (click)="hantarCatatan()">Hantar</button>
-  </div>
+    </ion-item> -->
 
 
 
@@ -73,9 +73,14 @@
 <ion-footer  >
 
 
-  <div class="buttonContainer"  >
+  <div class="buttonContainer" *ngIf="!toggle" >
     <h6  item-left  style="font-weight:100">Tekan butang ini jika sudah kes sudah diselesaikan</h6>
-    <button ion-button class="button" color="secondary" round mode="ios" (click)="hantarAplikasi()">Kes Diselesaikan</button>
+    <button ion-button class="button" color="secondary" round mode="ios" (click)="toYes(aduan.$key)">Kes Diselesaikan</button>
+  </div>
+
+  <div class="buttonContainer" *ngIf="toggle" >
+    <h6  item-left  style="font-weight:100">Tekan butang ini jika sudah kes belum diselesaikan</h6>
+    <button ion-button class="button" color="danger" round mode="ios" (click)="toNo(aduan.$key)">Kes Belum Diselesaikan</button>
   </div>
 
 

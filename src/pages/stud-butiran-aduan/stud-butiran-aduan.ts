@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams} from 'ionic-angular';
 
 /*
   Generated class for the StudButiranAduan page.
@@ -11,11 +11,16 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-stud-butiran-aduan',
   templateUrl: 'stud-butiran-aduan.html'
 })
-export class StudButiranAduanPage {
+export class StudButiranAduanPage implements OnInit{
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
+  ngOnInit()
+  {
+  }
+
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad StudButiranAduanPage');
   }
 

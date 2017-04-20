@@ -17,8 +17,19 @@
 
   <ion-list mode="wp">
 
+    <ion-item>
+  <ion-label>Lokasi Kasar</ion-label>
+  <ion-select [(ngModel)]="form.lokasikasar">
+    <ion-option value="Kolej Kediaman 1" selected="true">KK1</ion-option>
+    <ion-option value="Kolej Kediaman 2">KK2</ion-option>
+    <ion-option value="Kolej Kediaman 3">KK3</ion-option>
+    <ion-option value="Kolej Kediaman 4">KK4</ion-option>
+    <ion-option value="Lain-Lain Tempat">Lain-lain</ion-option>
+  </ion-select>
+</ion-item>
+
   <ion-item mode="wp">
-    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
+    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi Terperinci" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
   </ion-item>
 
   <button ion-button full color="blue" (click)="getCoord()">Guna GPS</button>

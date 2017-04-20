@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffButiranKesPage } from '../staff-butiran-kes/staff-butiran-kes';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import 'rxjs/add/operator/map';
@@ -20,7 +20,7 @@ export class StaffSemuaKesPage implements OnInit {
   myDate: any;
   another: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, loadingCtrl: LoadingController) {
 
   }
 
@@ -37,8 +37,8 @@ export class StaffSemuaKesPage implements OnInit {
     console.log('ionViewDidLoad StaffSemuaKesPage');
   }
 
-  itemClicked(){
-    this.navCtrl.push(StaffButiranKesPage);
+  aduanClicked(aduan){
+    this.navCtrl.push(StaffButiranKesPage, {aduan});
   }
 
   // dateClicked(){

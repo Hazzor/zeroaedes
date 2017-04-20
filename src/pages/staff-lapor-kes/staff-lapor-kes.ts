@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { DataProvider } from '../../providers/data';
@@ -32,8 +32,9 @@ export class StaffLaporKesPage {
   authUserIdSub : Subscription;
   authUserId : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire, public loadingCtrl: LoadingController) {
     this.form = {
+      lokasikasar: '',
       lokasi: '',
       deskripsi: '',
       telefon: '',
@@ -41,8 +42,6 @@ export class StaffLaporKesPage {
     }
     this.aduanList = af.database.list('/aduanList');
     this.gambaraduanList = firebase.storage().ref('/gambarAduan/');
-
-
   }
 
   ionViewDidLoad() {
@@ -56,7 +55,6 @@ export class StaffLaporKesPage {
         this.form.nama = userData.name,
         this.form.telefon = userData.number
     });
-
     // this.getCoord();
   }
 
@@ -88,17 +86,24 @@ export class StaffLaporKesPage {
       // this.form.picture = imageData;
 
 
+        let loading = this.loadingCtrl.create({
+          content: 'Gambar sedang dimuat naik...'
+        })
+        loading.present();
+
+
       this.gambaraduanList.child(Math.random() + '.png')
       .putString(imageData, 'base64', {contentType: 'image/png'}).then((savedPicture) => {
-          this.gambaraduanURL = savedPicture.downloadURL;
+          loading.dismiss().then(() => {
+            this.gambaraduanURL = savedPicture.downloadURL;
+            let alert = this.alertCtrl.create({
+                  title: 'Berjaya!',
+                  subTitle: 'Gambar anda telah dimuat naik',
+                  buttons: ['OK']
+                });
+              alert.present();
+          })
         });
-
-      let alert = this.alertCtrl.create({
-            title: 'Berjaya!',
-            subTitle: 'Gambar anda telah dimuat naik',
-            buttons: ['OK']
-          });
-          alert.present();
     }, error => {
       let alert = this.alertCtrl.create({
             title: 'Gagal!',
@@ -112,15 +117,25 @@ export class StaffLaporKesPage {
 
   hantarAplikasi()
   {
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth();
+    let day = d.getDate();
+    let hour = d.getHours();
+    let min = d.getMinutes();
+    let ts = day + "/" + month + "/" + year + " " + hour + ":" + min;
+    // console.log(ts);
+
     this.aduanList.push({
       tsid: Date.now(),
-      timestamp: Date(),
+      timestamp: ts,
+      location: this.form.lokasikasar,
       coord: this.coord,
       deskripsi: this.form.deskripsi,
       telefon: this.form.telefon,
       tindakan: this.form.tindakan,
       nama: this.form.nama,
-      // gambar: this.gambaraduanURL
+      gambar: this.gambaraduanURL
     })
 
     this.authUser.update({
