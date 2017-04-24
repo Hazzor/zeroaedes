@@ -117,40 +117,73 @@ export class StaffLaporKesPage {
 
   hantarAplikasi()
   {
-    let d = new Date();
-    let year = d.getFullYear();
-    let month = d.getMonth()+1;
-    let day = d.getDate();
-    let hour = d.getHours();
-    let min = d.getMinutes();
-    let ts = day + "/" + month + "/" + year + " " + hour + ":" + min;
-    // console.log(ts);
+    if(this.form.lokasikasar == "" || this.coord == "" || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.tindakan == "")
+    {
+          let alertfill = this.alertCtrl.create({
+      title: 'Perhatian!',
+      subTitle: 'Sila lengkapkan semua butiran dahulu',
+      buttons: ['Ok']
+    });
+    alertfill.present();
+    }
+    else
+    {
+      if(this.gambaraduanURL == undefined)
+      {
+        this.gambaraduanURL = "";
+      }
 
-    this.aduanList.push({
-      tsid: Date.now(),
-      timestamp: ts,
-      bulan: month.toString(),
-      tahun: year.toString(),
-      location: this.form.lokasikasar,
-      coord: this.coord,
-      deskripsi: this.form.deskripsi,
-      telefon: this.form.telefon,
-      tindakan: this.form.tindakan,
-      nama: this.form.nama,
-      gambar: this.gambaraduanURL,
-      category: 'Staff'
-    })
+      let alertconfirm = this.alertCtrl.create({
+        title: 'Pasti hantar?',
+        message: 'Sila pastikan maklumat yang disertai adalah benar',
+        buttons: [
+          {
+            text: 'Balik',
+            role: 'cancel',
+            handler: () => {
+              // console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Hantar',
+            handler: () => {
+              let d = new Date();
+              let year = d.getFullYear();
+              let month = d.getMonth()+1;
+              let day = d.getDate();
+              let hour = d.getHours();
+              let min = d.getMinutes();
+              let ts = day + "/" + month + "/" + year + " " + hour + ":" + min;
+              // console.log(ts);
 
-    this.authUser.update({
-      name: this.form.nama,
-      number: this.form.telefon
-    })
+              this.aduanList.push({
+                tsid: Date.now(),
+                timestamp: ts,
+                bulan: month.toString(),
+                tahun: year.toString(),
+                location: this.form.lokasikasar,
+                coord: this.coord,
+                deskripsi: this.form.deskripsi,
+                telefon: this.form.telefon,
+                tindakan: this.form.tindakan,
+                nama: this.form.nama,
+                gambar: this.gambaraduanURL,
+                category: 'Staff'
+              })
 
-    // console.log(this.coord);
-    // console.log(this.form.deskripsi);
-    // console.log(this.form.telefon);
-    // console.log(this.form.tindakan);
-    this.navCtrl.pop();
+              this.authUser.update({
+                name: this.form.nama,
+                number: this.form.telefon
+              })
+              // console.log('Buy clicked');
+              this.navCtrl.pop();
+            }
+          }
+        ]
+      });
+      alertconfirm.present();
+    }
+
   }
 
 }

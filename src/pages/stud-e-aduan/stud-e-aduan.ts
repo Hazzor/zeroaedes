@@ -101,31 +101,64 @@ export class StudEAduanPage {
 
   hantarAduan()
   {
-    let d = new Date();
-    let year = d.getFullYear();
-    let month = d.getMonth()+1;
-    let day = d.getDate();
-    let hour = d.getHours();
-    let min = d.getMinutes();
-    let ts = day + "/" + month + "/" + year + " " + hour + ":" + min;
+    if(this.form.lokasikasar == "" || this.coord == "" || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.matrik == "")
+    {
+          let alertfill = this.alertCtrl.create({
+      title: 'Perhatian!',
+      subTitle: 'Sila lengkapkan semua butiran dahulu',
+      buttons: ['Ok']
+    });
+    alertfill.present();
+    }
+    else
+    {
+      if(this.gambaraduanURL == undefined)
+      {
+        this.gambaraduanURL = "";
+      }
+      let alertconfirm = this.alertCtrl.create({
+        title: 'Pasti hantar?',
+        message: 'Sila pastikan maklumat yang disertai adalah benar',
+        buttons: [
+          {
+            text: 'Balik',
+            role: 'cancel',
+            handler: () => {
+              // console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Hantar',
+            handler: () => {
+              let d = new Date();
+              let year = d.getFullYear();
+              let month = d.getMonth()+1;
+              let day = d.getDate();
+              let hour = d.getHours();
+              let min = d.getMinutes();
+              let ts = day + "/" + month + "/" + year + " " + hour + ":" + min;
 
-    this.aduanList.push({
-      tsid: Date.now(),
-      timestamp: ts,
-      bulan: month.toString(),
-      tahun: year.toString(),
-      location: this.form.lokasikasar,
-      coord: this.coord,
-      deskripsi: this.form.deskripsi,
-      telefon: this.form.telefon,
-      tindakan: 'Tidak',
-      nama: this.form.nama,
-      gambar: this.gambaraduanURL,
-      category: 'Pelajar',
-      matrik: this.form.matrik
-    })
+              this.aduanList.push({
+                tsid: Date.now(),
+                timestamp: ts,
+                bulan: month.toString(),
+                tahun: year.toString(),
+                location: this.form.lokasikasar,
+                coord: this.coord,
+                deskripsi: this.form.deskripsi,
+                telefon: this.form.telefon,
+                tindakan: 'Tidak',
+                nama: this.form.nama,
+                gambar: this.gambaraduanURL,
+                category: 'Pelajar',
+                matrik: this.form.matrik
+              })
 
-    this.navCtrl.pop();
+              this.navCtrl.pop();
+            }
+          }]
+        });
+        alertconfirm.present();
+      }
+    }
   }
-
-}
