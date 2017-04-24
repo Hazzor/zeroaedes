@@ -30,7 +30,7 @@ toggle: boolean;
 
   editList: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController, public data: DataProvider) {
     this.editList = af.database.list('/aduanList');
   }
 
@@ -108,6 +108,31 @@ ngOnInit(){
     ]
   });
   alert.present();
+  }
+
+  delete()
+  {
+    let alert2 = this.alertCtrl.create({
+      title: 'Pasti?',
+      message: 'Adakah anda pasti untuk padam kes ini?',
+      buttons: [
+        {
+          text: 'Tidak',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ya',
+          handler: () => {
+            this.editList.remove(this.aduan.$key)
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert2.present();
   }
 
 }

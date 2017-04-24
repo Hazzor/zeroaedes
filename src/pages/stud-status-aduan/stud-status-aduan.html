@@ -21,27 +21,24 @@
 
     <ion-list mode="wp" >
       <ion-item mode="wp" >
-        <ion-input type="text" mode="wp" placeholder="No. Matrik" ></ion-input>
+        <ion-input type="text" mode="wp" placeholder="No. Matrik" [(ngModel)]="matrik"></ion-input>
       </ion-item>
 
     <div class="buttonContainer">
-      <button ion-button class="button" small color="secondary" round mode="ios" (click)="reset()">Semak</button>
+      <button ion-button class="button" small color="secondary" round mode="ios" (click)="semakStatus()">Semak</button>
     </div>
 
     </ion-list>
-    
+
 
 <!--if he/she got do aduan/ the aduan list will appear-->
   <ion-list>
   <ion-item-sliding>
-    
-    <ion-item (click)="itemClicked()">
 
-    <h2 text-wrap>KK3</h2>
-    <h3 >27 August 2017</h3>
-   
-    <p >Belum ambil tindakan</p>
-    
+    <ion-item *ngFor="let aduan of aduans"(click)="aduanClicked(aduan)">
+    <h2 text-wrap>{{aduan.location}}</h2>
+    <h3 >Dilaporkan Pada: {{aduan.timestamp}}</h3>
+    <p >Tindakan Diambil: {{aduan.tindakan}}</p>
     </ion-item>
 
     <ion-item-options side="right">

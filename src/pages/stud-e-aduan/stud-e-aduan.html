@@ -17,42 +17,49 @@
 
   <ion-list mode="wp">
 
-  <ion-item mode="wp">
-    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi"></ion-input>
-  </ion-item>
+    <ion-item>
+  <ion-label>Lokasi Kasar</ion-label>
+  <ion-select [(ngModel)]="form.lokasikasar">
+    <ion-option value="Kolej Kediaman 1" selected="true">KK1</ion-option>
+    <ion-option value="Kolej Kediaman 2">KK2</ion-option>
+    <ion-option value="Kolej Kediaman 3">KK3</ion-option>
+    <ion-option value="Kolej Kediaman 4">KK4</ion-option>
+    <ion-option value="Lain-Lain Tempat">Lain-lain</ion-option>
+  </ion-select>
+</ion-item>
 
-  <ion-item mode="wp">
-    <ion-input mode="wp" type="text" clearInput placeholder="Nama Pelajar"></ion-input>
-  </ion-item>
+<ion-item mode="wp">
+  <ion-input mode="wp" type="text" clearInput placeholder="Koordinat GPS" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
+</ion-item>
 
-  <ion-item mode="wp">
-    <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi"></ion-textarea>
-  </ion-item>
+<button ion-button full color="blue" (click)="getCoord()">Guna GPS</button>
 
-  <ion-item mode="wp">
-    <ion-input mode="wp" type="number" clearInput placeholder="No. Telefon Pelajar "></ion-input>
-  </ion-item>
+<ion-item mode="wp">
+  <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi" [(ngModel)]="form.deskripsi"></ion-textarea>
+</ion-item>
 
-  <ion-item mode="wp">
-    <ion-input mode="wp" type="number" clearInput placeholder="No. Matrik Pelajar "></ion-input>
-  </ion-item>
+<ion-item mode="wp">
+  <ion-input mode="wp" type="text" clearInput placeholder="Nama Pelajar" [(ngModel)]="form.nama"></ion-input>
+</ion-item>
 
-  <div class="buttonContainer">
-      <button ion-button class="button" small color="blue" round mode="ios" (click)="muatnaikGambar()">Muat Naik Gambar</button>
-  </div>
+<ion-item mode="wp">
+  <ion-input mode="wp" type="number" clearInput placeholder="No. Telefon Pelajar" [(ngModel)]="form.telefon"></ion-input>
+</ion-item>
 
- 
+<ion-item mode="wp">
+  <ion-input mode="wp" type="text" clearInput placeholder="No. Matrik Pelajar" [(ngModel)]="form.matrik"></ion-input>
+</ion-item>
 
+<div class="buttonContainer">
+    <button ion-button class="button" small color="blue" round mode="ios" (click)="uploadGambar()">Muat Naik Gambar</button>
+</div>
 </ion-list>
 
 </ion-content>
 
+
 <ion-footer  >
-
-
   <div class="buttonContainer"  >
       <button ion-button class="button" color="secondary" round mode="ios" (click)="hantarAduan()">Hantar Aduan</button>
   </div>
-
-
 </ion-footer>

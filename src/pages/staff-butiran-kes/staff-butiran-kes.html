@@ -8,6 +8,13 @@
 
   <ion-navbar>
     <ion-title>Butiran Kes</ion-title>
+
+<ion-buttons end>
+    <button ion-button icon-only color="danger" (click)="delete()">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+</ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
@@ -23,7 +30,7 @@
     </ion-item>
 
     <!-- <div class="buttonContainer"  > -->
-    <button ion-button class="button" small color="primary" round mode="ios" (click)="openMap()">View On Map</button>
+    <button ion-button class="button" full color="primary" (click)="openMap()">View On Map</button>
   <!-- </div> -->
 
 
@@ -39,13 +46,13 @@
       <h2  text-wrap item-left ><b>Tindakan Diambil: {{aduan.tindakan}}</b></h2>
     </ion-item>
 
-    <ion-item-divider color="light"><h2 class="itemDivider" >Staf yang laporkan</h2></ion-item-divider>
+    <ion-item-divider color="light"><h2 class="itemDivider" >Dilaporkan Oleh</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
-      <h2  text-wrap item-left ><b>{{aduan.nama}}</b></h2>
+      <h2  text-wrap item-left ><b>[{{aduan.category}}] - {{aduan.nama}}</b></h2>
     </ion-item>
 
-    <ion-item-divider color="light"><h2 class="itemDivider" >No. Telefon Staf</h2></ion-item-divider>
+    <ion-item-divider color="light"><h2 class="itemDivider" >No. Telefon</h2></ion-item-divider>
 
     <ion-item no-lines mode="wp" style="border-bottom:1px solid lightgray; padding-bottom:10px">
       <h2  text-wrap item-left ><b>{{aduan.telefon}}</b></h2>

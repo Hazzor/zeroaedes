@@ -16,57 +16,15 @@
 <ion-content >
 
 <ion-list>
-  <ion-item-sliding>
-
-    <!-- <ion-item> -->
-  <!-- <ion-label>Date</ion-label> -->
-  <!-- <ion-datetime displayFormat="DD/MMM/YYYY HH mm" pickerFormat="DD MMM YYYY HH mm" [(ngModel)]="myDate"></ion-datetime> -->
-  <!-- <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="myDate"></ion-datetime> -->
-<!-- </ion-item> -->
-
-    <ion-item *ngFor="let aduan of aduans"(click)="aduanClicked(aduan)">
-
-    <h2 text-wrap>{{aduan.location}}</h2>
-    <h3 >Dilaporkan Pada: {{aduan.timestamp}}</h3>
-
-    <p >Tindakan Diambil: {{aduan.tindakan}}</p>
-    </ion-item>
-
-    <ion-item-options side="right">
-      <button ion-button color="danger">
-        <ion-icon name="trash"></ion-icon>
-        Delete
-      </button>
-
-    </ion-item-options>
-  </ion-item-sliding>
-
-    <ion-item-sliding>
+  <ion-item-sliding *ngFor="let aduan of aduans"(click)="aduanClicked(aduan)">
 
     <ion-item>
-
-    <h2 text-wrap>KK2</h2>
-    <h3 >{{myDate}}</h3>
-
-    <p >Sudah ambil tindakan</p>
-
-
+    <h2 text-wrap>{{aduan.location}}</h2>
+    <h3 >Dilaporkan Pada: {{aduan.timestamp}}</h3>
+    <p >Tindakan Diambil: {{aduan.tindakan}}</p>
     </ion-item>
-
-    <ion-item-options side="left">
-      <button ion-button color="danger">
-        <ion-icon name="trash"></ion-icon>
-        Delete
-      </button>
-
-    </ion-item-options>
+    
   </ion-item-sliding>
 </ion-list>
-
-<ion-item >
-<!-- <button (click)="dateClicked()">Date</button> -->
-
-</ion-item>
-
 
 </ion-content>

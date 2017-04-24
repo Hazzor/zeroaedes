@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
+import { StudMenuPage } from '../pages/stud-menu/stud-menu';
 import { StaffMenuPage } from '../pages/staff-menu/staff-menu';
 
 import { AuthProvider } from '../providers/auth';

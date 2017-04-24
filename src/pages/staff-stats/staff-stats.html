@@ -15,6 +15,57 @@
 
 <ion-content padding>
 
-  <img src="images/stat/graph.png" alt="">
+<!-- <button ion-button (click)="genChart()">Generate</button> -->
 
+<ion-item>
+  <h2>Sepanjang Masa</h2>
+</ion-item>
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card >
+        <ion-card-content style="text-align:center; color:white">
+          <h1 style="font-size:50px" color="darkgreen"><b>{{ jumlahtelah }}</b></h1>
+          <h6 color="darkgreen">Telah Diselesaikan</h6>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card >
+        <ion-card-content style="text-align:center">
+          <h1 style="font-size:50px" color="danger"><b>{{ jumlahbelum }}</b></h1>
+          <h6 color="danger">Belum Diselesaikan</h6>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card >
+        <ion-card-content style="text-align:center">
+          <h1 style="font-size:50px" color="gray"><b>{{ jumlah}}</b></h1>
+          <h6 color="gray">Jumlah Kes</h6>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<ion-card>
+  <ion-card-header>
+    Trend
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+    <ion-label>Tahun</ion-label>
+    <ion-select [(ngModel)]="tahun" (ionChange)="updateData()">
+      <ion-option value="2017">2017</ion-option>
+      <ion-option value="2018">2018</ion-option>
+    </ion-select>
+  </ion-item>
+    <canvas #lineCanvas></canvas>
+  </ion-card-content>
+</ion-card>
 </ion-content>

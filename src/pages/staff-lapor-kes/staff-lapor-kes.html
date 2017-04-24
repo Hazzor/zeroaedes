@@ -29,10 +29,10 @@
 </ion-item>
 
   <ion-item mode="wp">
-    <ion-input mode="wp" type="text" clearInput placeholder="Lokasi Terperinci" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
+    <ion-input mode="wp" type="text" clearInput placeholder="Koordinat GPS" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
   </ion-item>
 
-  <button ion-button full color="blue" (click)="getCoord()">Guna GPS</button>
+  <button ion-button full color="primary" (click)="getCoord()">Guna GPS</button>
 
   <!-- <div class="buttonContainer">
       <button ion-button class="button" small color="primary" round mode="ios" (click)="getCoord()">Guna GPS</button>

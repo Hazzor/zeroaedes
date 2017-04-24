@@ -119,7 +119,7 @@ export class StaffLaporKesPage {
   {
     let d = new Date();
     let year = d.getFullYear();
-    let month = d.getMonth();
+    let month = d.getMonth()+1;
     let day = d.getDate();
     let hour = d.getHours();
     let min = d.getMinutes();
@@ -129,13 +129,16 @@ export class StaffLaporKesPage {
     this.aduanList.push({
       tsid: Date.now(),
       timestamp: ts,
+      bulan: month.toString(),
+      tahun: year.toString(),
       location: this.form.lokasikasar,
       coord: this.coord,
       deskripsi: this.form.deskripsi,
       telefon: this.form.telefon,
       tindakan: this.form.tindakan,
       nama: this.form.nama,
-      gambar: this.gambaraduanURL
+      gambar: this.gambaraduanURL,
+      category: 'Staff'
     })
 
     this.authUser.update({

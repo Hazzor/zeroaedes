@@ -19,18 +19,30 @@ export class StaffSemuaKesPage implements OnInit {
   aduans: any;
   myDate: any;
   another: any;
+  item: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public loadingCtrl: LoadingController) {
 
   }
 
   ngOnInit(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+
     this.af.database.list('/aduanList', {
     }).map((aduan) => {
       return aduan.sort(function(a,b){
         return b.tsid - a.tsid
       });
-    }).subscribe((value) => {this.aduans = value});
+    }).subscribe((value) => {
+      this.aduans = value
+      loading.dismiss();
+    });
   }
 
   ionViewDidLoad() {
@@ -38,18 +50,13 @@ export class StaffSemuaKesPage implements OnInit {
   }
 
   aduanClicked(aduan){
+    // console.log(aduan);
     this.navCtrl.push(StaffButiranKesPage, {aduan});
   }
 
-  // dateClicked(){
-  //   this.another = this.myDate.split(/-|:|T/);
-  //   console.log(this.another);
-  //   console.log(this.myDate);
-  //   let timestamp = new Date (this.another[0],this.another[1],this.another[2],this.another[3],this.another[4],0,0);
-  //   console.log(timestamp);
-  //   let something = timestamp.getTime();
-  //   console.log(something);
-  //
-  // }
+  delete(aduan)
+  {
+    console.log(aduan);
+  }
 
 }
