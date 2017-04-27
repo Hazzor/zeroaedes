@@ -21,6 +21,7 @@ import { StaffSignUpPage } from '../pages/staff-sign-up/staff-sign-up';
 import { StaffForgotPasswordPage } from '../pages/staff-forgot-password/staff-forgot-password';
 import { StaffButiranKesPage } from '../pages/staff-butiran-kes/staff-butiran-kes';
 
+// import {Calendar} from '@ionic-native/calendar';
 
 import { InfoAedesPage } from '../pages/info-aedes/info-aedes';
 import { AppPenghalauPage } from '../pages/app-penghalau/app-penghalau';

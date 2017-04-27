@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { DataProvider } from '../../providers/data';
@@ -26,7 +26,7 @@ export class StudEAduanPage {
   gambaraduanURL: any;
   gambaraduanList: firebase.storage.Reference;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.form = {
       lokasikasar: '',
       lokasi: '',
@@ -101,7 +101,7 @@ export class StudEAduanPage {
 
   hantarAduan()
   {
-    if(this.form.lokasikasar == "" || this.coord == "" || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.matrik == "")
+    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.matrik == "")
     {
           let alertfill = this.alertCtrl.create({
       title: 'Perhatian!',
@@ -155,6 +155,14 @@ export class StudEAduanPage {
               })
 
               this.navCtrl.pop();
+
+              let toast = this.toastCtrl.create({
+                message: 'Aduan anda telah berjaya direkodkan!',
+                duration: 3000,
+                position: 'top'
+              });
+
+              toast.present();
             }
           }]
         });

@@ -67,14 +67,15 @@ export class StaffStatsPage implements OnInit {
     this.cnov = 0;
     this.cdec = 0;
 
-    this.queryObservable.map((firebaseAduans) => {
+
+     this.queryObservable.map((firebaseAduans) => {
       return firebaseAduans.filter((aduans) => {
         // let tahun = parseInt(this.tahun);
         return aduans.tahun === this.tahun
       })
     }).subscribe((aduans) => {
 
-      aduans.forEach((satu) => {
+        aduans.forEach((satu) => {
         if(satu.bulan == 1)
         {
           this.cjan = this.cjan+1;
@@ -123,9 +124,10 @@ export class StaffStatsPage implements OnInit {
         {
           this.cdec = this.cdec+1;
         }
-
+        // console.log(this.capr);
       })
     });
+    // console.log(this.capr);
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
         type: 'line',
@@ -158,11 +160,15 @@ export class StaffStatsPage implements OnInit {
         }
 
     });
+    // console.log(this.capr);
+    // console.log(this.lineChart);
 }
 
 
   ngOnInit()
   {
+    let d = new Date();
+    this.tahun = d.getFullYear().toString();
     this.queryObservable = this.af.database.list('/aduanList');
 
     let loading = this.loadingCtrl.create({
@@ -179,7 +185,6 @@ export class StaffStatsPage implements OnInit {
 
     this.queryObservable.map((kiratelah) => {
       return kiratelah.filter((telah) => {
-        // let tahun = parseInt(this.tahun);
         return telah.tindakan === "Ya"
       })
     }).subscribe((adn1) => {
@@ -188,14 +193,15 @@ export class StaffStatsPage implements OnInit {
 
     this.queryObservable.map((kirabelum) => {
       return kirabelum.filter((belum) => {
-        // let tahun = parseInt(this.tahun);
         return belum.tindakan === "Tidak"
       })
     }).subscribe((adn2) => {
       this.jumlahbelum = adn2.length;
+      setTimeout(() => {
+        this.updateData();
+      }, 1)
       loading.dismiss();
     })
-
 }
 
 }

@@ -39,6 +39,12 @@
         },
         "cordova-plugin-filepath": {
             "PACKAGE_NAME": "com.ionicframework.zeroaedes897039"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.zeroaedes897039"
+        },
+        "com.xmartlabs.cordova.market": {
+            "PACKAGE_NAME": "com.ionicframework.zeroaedes897039"
         }
     },
     "dependent_plugins": {

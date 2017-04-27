@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { DataProvider } from '../../providers/data';
@@ -32,7 +32,7 @@ export class StaffLaporKesPage {
   authUserIdSub : Subscription;
   authUserId : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public cameraPlugin: Camera, private alertCtrl: AlertController, private data: DataProvider, public af: AngularFire, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.form = {
       lokasikasar: '',
       lokasi: '',
@@ -117,7 +117,7 @@ export class StaffLaporKesPage {
 
   hantarAplikasi()
   {
-    if(this.form.lokasikasar == "" || this.coord == "" || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.tindakan == "")
+    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.tindakan == "")
     {
           let alertfill = this.alertCtrl.create({
       title: 'Perhatian!',
@@ -175,8 +175,16 @@ export class StaffLaporKesPage {
                 name: this.form.nama,
                 number: this.form.telefon
               })
-              // console.log('Buy clicked');
+
               this.navCtrl.pop();
+
+              let toast = this.toastCtrl.create({
+                message: 'Aduan anda telah berjaya direkodkan!',
+                duration: 3000,
+                position: 'top'
+              });
+
+              toast.present();
             }
           }
         ]

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+// import { Market } from '@ionic-native/market';
 
 /*
   Generated class for the AppPenghalau page.
@@ -17,6 +18,11 @@ export class AppPenghalauPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AppPenghalauPage');
+  }
+
+  downloadApp()
+  {
+    // this.market.open('com.dragonfire.mosquitokiller');
   }
 
 }

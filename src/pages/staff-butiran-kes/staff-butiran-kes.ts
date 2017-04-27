@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { AngularFire , FirebaseListObservable , FirebaseObjectObservable } from 'angularfire2';
 
 import { DataProvider } from '../../providers/data';
@@ -30,7 +30,7 @@ toggle: boolean;
 
   editList: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController, public data: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController, public data: DataProvider, public toastCtrl: ToastController) {
     this.editList = af.database.list('/aduanList');
   }
 
@@ -59,7 +59,7 @@ ngOnInit(){
     console.log(currentid);
   let alert = this.alertCtrl.create({
     title: 'Pasti?',
-    message: 'Adakah anda pasti untuk label kes ini diselesaikan?',
+    message: 'Adakah anda pasti untuk label kes ini selesai?',
     buttons: [
       {
         text: 'Tidak',
@@ -75,6 +75,13 @@ ngOnInit(){
             tindakan: 'Ya'
           })
           this.navCtrl.pop();
+          let toast0 = this.toastCtrl.create({
+            message: 'Aduan berjaya diselesaikan!',
+            duration: 3000,
+            position: 'top'
+          });
+
+          toast0.present();
         }
       }
     ]
@@ -87,7 +94,7 @@ ngOnInit(){
     console.log(currentid);
   let alert = this.alertCtrl.create({
     title: 'Pasti?',
-    message: 'Adakah anda pasti untuk label kes ini belum diselesaikan?',
+    message: 'Adakah anda pasti untuk label kes ini belum selesai?',
     buttons: [
       {
         text: 'Tidak',
@@ -103,6 +110,13 @@ ngOnInit(){
             tindakan: 'Tidak'
           })
           this.navCtrl.pop();
+          let toast1 = this.toastCtrl.create({
+            message: 'Aduan dilabel sebagai belum selesai!',
+            duration: 3000,
+            position: 'top'
+          });
+
+          toast1.present();
         }
       }
     ]
@@ -128,6 +142,13 @@ ngOnInit(){
           handler: () => {
             this.editList.remove(this.aduan.$key)
             this.navCtrl.pop();
+            let toast2 = this.toastCtrl.create({
+              message: 'Aduan telah berjaya dipadamkan!',
+              duration: 3000,
+              position: 'top'
+            });
+
+            toast2.present();
           }
         }
       ]

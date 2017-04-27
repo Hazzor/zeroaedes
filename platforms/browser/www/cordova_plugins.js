@@ -283,6 +283,27 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "pluginId": "cordova-plugin-x-toast",
+        "clobbers": [
+            "window.plugins.toast"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests",
+        "pluginId": "cordova-plugin-x-toast"
+    },
+    {
+        "file": "plugins/com.xmartlabs.cordova.market/www/market.js",
+        "id": "com.xmartlabs.cordova.market.Market",
+        "pluginId": "com.xmartlabs.cordova.market",
+        "clobbers": [
+            "cordova.plugins.market"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -299,7 +320,9 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.0",
     "cordova-plugin-file": "4.3.2",
     "cordova-plugin-file-transfer": "1.6.2",
-    "cordova-plugin-filepath": "1.0.2"
+    "cordova-plugin-filepath": "1.0.2",
+    "cordova-plugin-x-toast": "2.6.0",
+    "com.xmartlabs.cordova.market": "1.1"
 }
 // BOTTOM OF METADATA
 });
