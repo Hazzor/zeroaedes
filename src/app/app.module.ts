@@ -4,10 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 
-import { Market } from '@ionic-native/market';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { AppAvailability } from '@ionic-native/app-availability';
-import { Device } from '@ionic-native/device';
+// import { Market } from '@ionic-native/market';
+// import { InAppBrowser } from '@ionic-native/in-app-browser';
+// import { AppAvailability } from '@ionic-native/app-availability';
+// import { Device } from '@ionic-native/device';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -86,6 +86,6 @@ var config = {
     StudStatusAduanPage,
     StudButiranAduanPage
   ],
-  providers: [,DataProvider,AuthProvider,StatusBar,SplashScreen,Geolocation,Camera,Market,InAppBrowser,Device,AppAvailability,{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [,DataProvider,AuthProvider,StatusBar,SplashScreen,Geolocation,Camera,{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
