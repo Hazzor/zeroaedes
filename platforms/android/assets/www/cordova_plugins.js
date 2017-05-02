@@ -296,6 +296,23 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.market"
         ]
+    },
+    {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "id": "cordova-plugin-appavailability.AppAvailability",
+        "file": "plugins/cordova-plugin-appavailability/www/AppAvailability.js",
+        "pluginId": "cordova-plugin-appavailability",
+        "clobbers": [
+            "appAvailability"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -314,7 +331,9 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.6.2",
     "cordova-plugin-filepath": "1.0.2",
     "cordova-plugin-x-toast": "2.6.0",
-    "com.xmartlabs.cordova.market": "1.1"
+    "com.xmartlabs.cordova.market": "1.1",
+    "cordova-plugin-inappbrowser": "1.7.0",
+    "cordova-plugin-appavailability": "0.4.2"
 };
 // BOTTOM OF METADATA
 });
