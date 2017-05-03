@@ -13,7 +13,7 @@
 </ion-header>-->
 
 
-<ion-content >
+<ion-content>
 <!--
   <ion-list radio-group mode="wp">
   <ion-list-header mode="wp">
@@ -37,7 +37,7 @@
   <div style="text-align:center">
     <h6 style="color:gray; font-weight:200">Pelajar atau staf?</h6>
   </div>
-  <ion-segment [(ngModel)]="status" mode="ios">
+  <ion-segment [(ngModel)]="status" mode="ios" color="primary">
     <ion-segment-button  mode="ios" value="Pelajar">
       Pelajar
     </ion-segment-button>
@@ -54,27 +54,52 @@
 
 
 <div style="border-top:1px solid lightgray; padding-top:20%;" *ngSwitchCase="'Staf'">
-  <ion-list mode="wp">
+  <!-- <ion-list mode="ios"> -->
 
-  <ion-item mode="wp">
-    <ion-input type="email" mode="wp" type="text" placeholder="Emel" [(ngModel)]="form.email"></ion-input>
-  </ion-item>
+  <ion-card mode="ios">
 
-  <ion-item mode="wp">
-    <ion-input type="password" mode="wp" type="password" placeholder="Kata Laluan" [(ngModel)]="form.password"></ion-input>
-  </ion-item>
+  <ion-card-header style="text-align:center">
+    <h1> <b>Selamat Datang</b> </h1>
+  </ion-card-header>
 
-  <div class="buttonContainer">
-      <button ion-button class="button" color="primary" round mode="ios" (click)="stafLogin()">Log Masuk (Staf)</button>
+  <ion-card-content>
+    <!-- Add card content here! -->
+    <ion-item mode="md">
+      <ion-label color="primary" floating>Emel</ion-label>
+      <ion-input type="email" mode="ios" type="text" [(ngModel)]="form.email"></ion-input>
+    </ion-item>
+
+    <ion-item mode="md">
+      <ion-label color="primary" floating>Kata Laluan</ion-label>
+      <ion-input type="password" mode="ios" floating type="password" [(ngModel)]="form.password"></ion-input>
+    </ion-item>
+
+    <div class="buttonContainer">
+
+      <button ion-button icon-right class="button" color="oren" round mode="ios" (click)="stafLogin()">Log Masuk
+      <ion-icon name="arrow-dropright-circle"></ion-icon>
+      </button>
+
       <button ion-button clear mode="ios" color="gray" (click)="openForgotPasswordPage()">
-      <h6 style="font-weight:100; color:gray" >Lupa kata laluan?</h6>
-    </button>
+        <h6 style="font-weight:100; color:gray" >Lupa kata laluan?</h6>
+      </button>
+    </div>
+  </ion-card-content>
+
+</ion-card>
+
+<!-- </ion-list> -->
+
+</div>
+
+</div>
+
+<div [ngSwitch]="status">
+  <div style="border-top:1px solid lightgray; padding-top:30%; text-align:center" *ngSwitchCase="'Pelajar'">
+    <img src="images/logo.png" style="width:60%" alt="">
   </div>
-</ion-list>
-
 </div>
 
-</div>
 
 
 </ion-content>
@@ -86,7 +111,7 @@
     <ion-item style="text-align:center;border-top: 1px solid lightgrey; " no-lines>
     <h4 color="gray">Belum ada akaun?</h4>
 
-    <button ion-button clear color="primary" (click)="openSignUpPage()">
+    <button ion-button clear color="oren" (click)="openSignUpPage()">
 
       <b>Daftar</b>
     </button>
@@ -94,7 +119,9 @@
   </div>
 
   <div class="buttonContainer"  *ngSwitchCase="'Pelajar'"  >
-      <button ion-button class="button" color="blue" round mode="ios" (click)="pelajarLogin()">Log Masuk (Pelajar)</button>
+      <button icon-right ion-button class="button" color="blue" round mode="ios" (click)="pelajarLogin()">Log Masuk
+      <ion-icon name="arrow-dropright-circle"></ion-icon>
+      </button>
   </div>
 
 

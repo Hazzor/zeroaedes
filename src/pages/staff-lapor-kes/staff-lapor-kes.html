@@ -28,14 +28,26 @@
   </ion-select>
 </ion-item>
 
-<ion-item>
-  <h2> GPS: {{coord}} </h2>
-</ion-item>
 
-<button ion-button full color="primary" (click)="getCoord()">Dapatkan Koordinat</button>
+<ion-card mode="ios">
+
+<ion-card-header>
+  <h2> <b>Lokasi Terperinci:</b> </h2>
+</ion-card-header>
+
+<ion-card-content>
+  <h2> {{coord}} </h2>
+</ion-card-content>
+
+</ion-card>
+
+<button ion-button icon-left full color="oren" (click)="getCoord()">
+  <ion-icon name="locate"></ion-icon>
+  Dapatkan Koordinat
+</button>
 
   <!-- <div class="buttonContainer">
-      <button ion-button class="button" small color="primary" round mode="ios" (click)="getCoord()">Guna GPS</button>
+      <button ion-button class="button" small color="oren" round mode="ios" (click)="getCoord()">Guna GPS</button>
   </div> -->
 
   <ion-item mode="wp">
@@ -51,7 +63,10 @@
   </ion-item>
 
   <div class="buttonContainer">
-      <button ion-button class="button" small color="primary" round mode="ios" (click)="uploadGambar()">Muat Naik Gambar</button>
+      <button ion-button icon-left class="button" small color="oren" round mode="ios" (click)="uploadGambar()">
+      <ion-icon name="camera"></ion-icon>
+        Muat Naik Gambar
+      </button>
   </div>
 </ion-list>
 

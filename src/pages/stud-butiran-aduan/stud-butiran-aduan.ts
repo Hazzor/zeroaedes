@@ -29,7 +29,7 @@ export class StudButiranAduanPage implements OnInit {
   openMap()
   {
     console.log("clicked!");
-    window.open("http://www.google.com/maps/place/" + this.aduan.coord);
+    window.open("http://www.google.com/maps/place/" + this.aduan.coord, "_system");
   }
 
 

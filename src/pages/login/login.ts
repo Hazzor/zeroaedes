@@ -21,7 +21,7 @@ import { StaffSignUpPage } from '../staff-sign-up/staff-sign-up';
 })
 export class LoginPage {
 
-  status:string = 'Staf';
+  status:string = 'Pelajar';
   error: any;
   form: any;
 

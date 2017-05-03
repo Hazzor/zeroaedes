@@ -19,4 +19,9 @@ export class InfoAedesPage {
     console.log('ionViewDidLoad InfoAedesPage');
   }
 
+  visitSite()
+  {
+    window.open("http://idengue.remotesensing.gov.my/idengue/index.php", "_system");
+  }
+
 }

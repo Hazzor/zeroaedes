@@ -10,6 +10,7 @@
     <ion-title>e-Aduan</ion-title>
   </ion-navbar>
 
+
 </ion-header>
 
 
@@ -31,11 +32,21 @@
 <!-- <ion-item mode="wp">
   <ion-input mode="wp" type="text" clearInput placeholder="Koordinat GPS" value="{{coord}}" [(ngModel)]="form.lokasi"></ion-input>
 </ion-item> -->
-<ion-item>
-  <h2> GPS: {{coord}} </h2>
-</ion-item>
+<ion-card mode="ios">
 
-<button ion-button full color="blue" (click)="getCoord()">Dapatkan Koordinat</button>
+<ion-card-header>
+  <h2> <b>Lokasi Terperinci:</b> </h2>
+</ion-card-header>
+
+<ion-card-content>
+  <h2> {{coord}} </h2>
+</ion-card-content>
+
+</ion-card>
+
+<button ion-button icon-left full color="blue" (click)="getCoord()">
+<ion-icon name="locate"></ion-icon>
+  Dapatkan Koordinat</button>
 
 <ion-item mode="wp">
   <ion-textarea mode="wp" type="text" clearInput placeholder="Pemerhatian dan deskripsi" [(ngModel)]="form.deskripsi"></ion-textarea>
@@ -54,7 +65,9 @@
 </ion-item>
 
 <div class="buttonContainer">
-    <button ion-button class="button" small color="blue" round mode="ios" (click)="uploadGambar()">Muat Naik Gambar</button>
+    <button ion-button icon-left class="button" small color="blue" round mode="ios" (click)="uploadGambar()">
+      <ion-icon name="camera"></ion-icon>
+      Muat Naik Gambar</button>
 </div>
 </ion-list>
 

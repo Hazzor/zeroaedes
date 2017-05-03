@@ -56,13 +56,21 @@ export class StaffLaporKesPage {
         this.form.telefon = userData.number
     });
     // this.getCoord();
+    this.coord = "[ Sila tekan butang di bawah ]"
   }
 
   getCoord()
   {
+    let loading = this.loadingCtrl.create({
+  content: 'Sedang perolehi GPS...'
+    });
+
+loading.present();
+
     this.geolocation.getCurrentPosition().then((position) => {
 
           this.coord = position.coords.latitude + ", " + position.coords.longitude;
+          loading.dismiss();
           // console.log(this.coord);
 
         }, (err) => {
@@ -117,7 +125,7 @@ export class StaffLaporKesPage {
 
   hantarAplikasi()
   {
-    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.tindakan == "")
+    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.coord == "[ Sila tekan butang di bawah ]"|| this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.tindakan == "")
     {
           let alertfill = this.alertCtrl.create({
       title: 'Perhatian!',

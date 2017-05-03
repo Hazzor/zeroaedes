@@ -24,40 +24,6 @@ export class AppPenghalauPage {
     console.log('ionViewDidLoad AppPenghalauPage');
   }
 
-
-  // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
-  // 	let app: string;
-  // 	if (this.device.platform === 'iOS') {
-  // 		app = iosSchemaName;
-  // 	} else if (this.device.platform === 'Android') {
-  // 		app = androidPackageName;
-  // 	} else {
-  // 		let browser = this.iab.create(httpUrl + username, '_system');
-  // 		return;
-  // 	}
-  //
-  // 	this.aa.check(app).then(
-  // 		() => { // success callback
-  // 			let browser = this.iab.create(appUrl + username, '_system');
-  // 		},
-  // 		() => { // error callback
-  // 			let browser = this.iab.create(httpUrl + username, '_system');
-  // 		}
-  // 	);
-  // }
-  //
-  // openInstagram(username: string) {
-  // 	this.launchExternalApp('instagram://', 'com.instagram.android', 'instagram://user?username=', 'https://www.instagram.com/', username);
-  // }
-  //
-  // openTwitter(username: string) {
-  // 	this.launchExternalApp('twitter://', 'com.twitter.android', 'twitter://user?screen_name=', 'https://twitter.com/', username);
-  // }
-  //
-  // openFacebook(username: string) {
-  // 	this.launchExternalApp('fb://', 'com.facebook.katana', 'fb://profile/', 'https://www.facebook.com/', username);
-  // }
-
   downloadApp()
   {
     window.open("https://play.google.com/store/apps/details?id=com.dragonfire.mosquitokiller", "_system");

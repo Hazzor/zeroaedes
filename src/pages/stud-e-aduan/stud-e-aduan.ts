@@ -40,14 +40,23 @@ export class StudEAduanPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StudEAduanPage');
+    this.coord = "[ Sila tekan butang di bawah ]"
   }
 
   getCoord()
   {
+    let loading = this.loadingCtrl.create({
+content: 'Sedang perolehi GPS...'
+});
+
+loading.present();
+
     this.geolocation.getCurrentPosition().then((position) => {
 
           this.coord = position.coords.latitude + ", " + position.coords.longitude;
           // console.log(this.coord);
+          loading.dismiss();
+
 
         }, (err) => {
           console.log(err);
@@ -101,7 +110,7 @@ export class StudEAduanPage {
 
   hantarAduan()
   {
-    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.matrik == "")
+    if(this.form.lokasikasar == "" || this.coord == "" || this.coord == undefined || this.coord == "[ Sila tekan butang di bawah ]" || this.form.deskripsi == "" || this.form.telefon == "" || this.form.nama == "" || this.form.matrik == "")
     {
           let alertfill = this.alertCtrl.create({
       title: 'Perhatian!',
